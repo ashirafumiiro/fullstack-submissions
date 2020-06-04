@@ -8,23 +8,29 @@ const Button = (props) => (
   </button>
 )
 
-const Display = (props)=>{
+const Statistic = (props)=>{
   return(
-    <p>{props.text} {props.value}</p>
+    <tr><td>{props.text}</td><td>{props.value}</td></tr>
   )
 }
 
 const Statistics = ({good, bad, neutral})=>{
   let total = good+bad+neutral;
+  if(total===0) return <p>No feedback given</p>
   return (
     <div>
        <h1>statistics</h1>
-      <Display text="good" value={good}/>
-      <Display text="neutral" value={neutral}/>
-      <Display text="bad" value={bad}/>
-      <Display text='all' value={total} />
-      <Display text="average" value={(good+bad*-1)/total} />
-      <Display text="positive" value={100*good/total}/>
+       <table>
+         <tbody>
+          <Statistic text="good" value={good}/>
+          <Statistic text="neutral" value={neutral}/>
+          <Statistic text="bad" value={bad}/>
+          <Statistic text='all' value={total} />
+          <Statistic text="average" value={(good+bad*-1)/total} />
+          <Statistic text="positive" value={100*good/total}/>
+         </tbody>
+       </table>
+      
     </div>
   )
 }
